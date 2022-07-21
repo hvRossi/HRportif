@@ -4,6 +4,9 @@ window.addEventListener('load', () => {
     const input = document.querySelector("#new-task-input");
     const list_el = document.querySelector("#tasks");
 
+
+    alert("Repeito é pra quem tem! pra em tem! pra quem tem!")
+
     form.addEventListener('submit', (e) => {
         e.preventDefault();
 
