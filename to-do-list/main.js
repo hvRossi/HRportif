@@ -1,6 +1,7 @@
 let taskId = 0
 const taskKey = 'tasks'
 
+// methodo pra criar a div task
 const createTaskDiv = (inputValue, id) => {
 
     const task_el = document.createElement("div");
@@ -68,6 +69,7 @@ const fetchTodoList = () => {
 
     if(!tasksObj) return
 
+    // for para pegar as tasks ids e os labels
     for(let taskId of Object.keys(tasksObj)) {
         const task_el = createTaskDiv(tasksObj[taskId],taskId)
         list_el.appendChild(task_el);
@@ -75,6 +77,7 @@ const fetchTodoList = () => {
 }
 
 window.addEventListener('load', () => {
+
 
     fetchTodoList()
 
@@ -97,6 +100,7 @@ window.addEventListener('load', () => {
             return;
         }
 
+        // atualiza o taskId
         const task_id = taskId++
 
         const task_el = createTaskDiv(inputValue,task_id)
@@ -109,10 +113,12 @@ window.addEventListener('load', () => {
             taskObj = {[task_id]: inputValue}
         }
 
+        // atualiza o localstorage
         localStorage.setItem(taskKey, JSON.stringify(taskObj))
 
         input.value = "";
 
+        // set a div na div list_el
         list_el.appendChild(task_el);
 
     })
