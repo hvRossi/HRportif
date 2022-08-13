@@ -10,7 +10,6 @@
 	--yellowlogo: rgb(232, 165, 5);
 	--darkyellow: #948001;
 	--crinson: rgb(220, 20, 60);
-
 }
 
 * {
@@ -45,8 +44,6 @@
 	justify-content: center;
 }
 
-
-
 header2 {
 	padding: 2rem 1rem;
 	max-width: 800px;
@@ -61,8 +58,6 @@ body {
 	min-height: 100vh;
 	color: azure;
 }
-
-
 
 #new-task-form {
 	display: flex;
@@ -116,8 +111,6 @@ main {
 	margin: 0 auto;
 }
 
-
-
 .task-list h2 {
 		text-align: center;
 		font-size: 130%;
@@ -168,14 +161,12 @@ main {
 	opacity: 0.5;
 }
 
-
 .task .actions .edit {
 	color: var(--yellow);
 	background-image: linear-gradient(to right, var(--yelltogreen), var(--yellow));
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 }
-
 
 .task .actions .delete {
 	color: var(--crinson);
