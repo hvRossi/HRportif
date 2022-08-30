@@ -5,7 +5,6 @@ import ItemList from './ItemList';
 function MainTasks() {
 
     const [items, setItems] = useState([]);
-    const addItem = (item:never) => {
     // assuming no duplicates for demo purposes
     setItems([...items, item]);
     };
