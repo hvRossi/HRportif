@@ -1,7 +1,7 @@
 import { useState } from "react";
-import Item from "./Item";
 
-function AddItemForm({ addItem }:any) {
+
+function AddItemForm( { addItem }:any) {
     const [item, setItem] = useState('');
 
     function submitInput(e:any) {

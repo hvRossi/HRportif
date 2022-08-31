@@ -1,7 +1,7 @@
 
 const Item = ({ item }:any) => { 
     return (
-        <input type="text" className="text" value={item} readOnly/>
+        <input type="text" className="text" value={item} readOnly />
     )
 };
 
