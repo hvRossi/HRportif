@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from 'react'
 
-const updateLocalStorage = (todos: string[]) =>
+type newTodoObjectProps = {
+    id: number
+    text: string
+    completed?: boolean
+}
+
+const updateLocalStorage = (todos: newTodoObjectProps[]) =>
     localStorage.setItem("locStorTodos", JSON.stringify(todos));
 
 
 function App() {
 
-  const [todos, setTodos]: newTodoObjectProps | any = useState<newTodoObjectProps[]>([]);
+  const [todos, setTodos] = useState<newTodoObjectProps[]>([]);
   const [currentTodo, setCurrentTodo] = useState("");
   const [todoEditingId, setTodoEditingId] = useState<number>();
   const [editingText, setEditingText] = useState("");
-
-  type newTodoObjectProps = {
-    id: Date
-    text: string
-    completed?: boolean
-  }
 
   function handleSubmit(e: any) {
     e.preventDefault()
@@ -23,37 +23,36 @@ function App() {
       alert("Please fill in the task!!!");
       return
     }
-    
+
     const newTodoEntry = {
       id: new Date().getTime(),
       text: currentTodo,
       completed: false
     }
-   
+
     const newTodo = [...todos, newTodoEntry]
-    setTodos([...todos, newTodoEntry])
+    setTodos(newTodo)
     setCurrentTodo("")
     setTodoEditingId(undefined)
     updateLocalStorage(newTodo)
   }
 
   function deleteTodo(id: number) {
-
     const upDatedTodos = [...todos].filter((todo) => todo.id !== id)
-    const newTodos = upDatedTodos
     setTodos(upDatedTodos)
-    updateLocalStorage(newTodos)
+    updateLocalStorage(upDatedTodos)
   }
 
   function editTodo(id: number) {
-    const updatedTodos = [...todos].map((todo) => {
-      if (todo.id === id) {
-        todo.text = editingText
-      }
-      return todo
-    })
-    const newTodos = updatedTodos
-    setTodos(updatedTodos)
+
+    const itemToEdit = todos.findIndex((todo) => todo.id === id)
+    if(itemToEdit === -1) return
+
+    todos[itemToEdit].text = editingText
+
+    const newTodos = [...todos]
+
+    setTodos(newTodos)
     updateLocalStorage(newTodos)
     setTodoEditingId(0)
   }
@@ -61,7 +60,7 @@ function App() {
   useEffect(() => {
     const storagedTodos = localStorage.getItem("locStorTodos")
     if(!storagedTodos) return
-    
+
     const storagedIntoArray = JSON.parse(storagedTodos)
     if (storagedIntoArray) setTodos(storagedIntoArray);
   },[])
