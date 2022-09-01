@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import AddTaskForm from './components/AddTaskForm'
 
 type newTodoObjectProps = {
     id: number
@@ -67,10 +68,7 @@ function App() {
 
   return (
     <main>
-      <form id="new-task-form" onSubmit={handleSubmit} >
-        <input type="text" id="new-task-input" placeholder="what's your task?" onChange={(e) => setCurrentTodo(e.target.value)} value={currentTodo} />
-        <input type="submit" id="new-task-submit" value="Add task" />
-      </form>
+      <AddTaskForm onHandleSubmit={handleSubmit} setInputValue={setCurrentTodo} inputValue={currentTodo} ></AddTaskForm>
       <section className="task-list">
         <h2>--- Task List ---</h2>
         <div id="tasks">
