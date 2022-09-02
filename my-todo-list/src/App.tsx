@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from 'react'
+import AddTaskForm from './components/AddTaskForm'
+import Mynavbar from './components/Mynavbar';
+import TaskItem, { newTodoObjectProps } from './components/TaskItem'
 
+<<<<<<< Updated upstream
 type newTodoObjectProps = {
     id: number
     text: string
@@ -9,6 +13,9 @@ type newTodoObjectProps = {
 const updateLocalStorage = (todos: newTodoObjectProps[]) =>
     localStorage.setItem("locStorTodos", JSON.stringify(todos));
 
+=======
+const updateLocalStorage = (todos: newTodoObjectProps[]) => localStorage.setItem("locStorTodos", JSON.stringify(todos));
+>>>>>>> Stashed changes
 
 function App() {
 
@@ -19,7 +26,7 @@ function App() {
 
   function handleSubmit(e: any) {
     e.preventDefault()
-    if(!currentTodo) {
+    if (!currentTodo) {
       alert("Please fill in the task!!!");
       return
     }
@@ -44,6 +51,7 @@ function App() {
   }
 
   function editTodo(id: number) {
+<<<<<<< Updated upstream
 
     const itemToEdit = todos.findIndex((todo) => todo.id === id)
     if(itemToEdit === -1) return
@@ -54,62 +62,43 @@ function App() {
 
     setTodos(newTodos)
     updateLocalStorage(newTodos)
+=======
+    const updatedTodos = [...todos].map((todo) => {
+      if (todo.id === id) {
+        todo.text = editingText
+      }
+      return todo
+    })
+
+    setTodos(updatedTodos)
+    updateLocalStorage(updatedTodos)
+>>>>>>> Stashed changes
     setTodoEditingId(0)
   }
 
   useEffect(() => {
     const storagedTodos = localStorage.getItem("locStorTodos")
+<<<<<<< Updated upstream
     if(!storagedTodos) return
+=======
+    if (!storagedTodos) return
+>>>>>>> Stashed changes
 
     const storagedIntoArray = JSON.parse(storagedTodos)
     if (storagedIntoArray) setTodos(storagedIntoArray);
-  },[])
+  }, [])
 
   return (
-    <main>
-      <form id="new-task-form" onSubmit={handleSubmit} >
-        <input type="text" id="new-task-input" placeholder="what's your task?" onChange={(e) => setCurrentTodo(e.target.value)} value={currentTodo} />
-        <input type="submit" id="new-task-submit" value="Add task" />
-      </form>
-      <section className="task-list">
-        <h2>--- Task List ---</h2>
-        <div id="tasks">
-          {todos.map((todo: { id: number, text: string; }) =>
-
-            <div key={todo.id} className="task">
-              <div className="content">
-                {todoEditingId === todo.id ?
-                  (
-                    <input
-                      className='input-editing-text'
-                      type="text"
-                      onChange={(e) => setEditingText(e.target.value)}
-                      value={editingText}
-                    />
-                  )
-                  :
-                  (<div className='text'>{todo.text}</div>)}
-
-
-              </div>
-              <div className="actions">
-                {todoEditingId === todo.id ?
-                  (
-                    <button className="edit" onClick={() => editTodo(todo.id)}>Save</button>
-                  )
-                  :
-                  (
-                    <button className="edit" onClick={(e) => { setTodoEditingId(todo.id), setEditingText(todo.text) }}>Edit</button>
-                  )
-                }
-                <button className="delete" onClick={() => deleteTodo(todo.id)}>Delete</button>
-              </div>
-            </div>
-
-          )}
-        </div>
-      </section>
-    </main>
+    <>
+      <Mynavbar />
+      <main>
+        <AddTaskForm onHandleSubmit={handleSubmit} setInputValue={setCurrentTodo} inputValue={currentTodo} />
+        <section className="task-list">
+          <h2>--- Task List ---</h2>
+          <TaskItem todos={todos} todoEditingId={todoEditingId} setEditingText={setEditingText} editingText={editingText} editTodo={editTodo} deleteTodo={deleteTodo} setTodoEditingId={setTodoEditingId} />
+        </section>
+      </main>
+    </>
   )
 }
 
