@@ -1,15 +1,12 @@
 {
-  "name": "react-to-do-list",
+  "name": "react-todo-list",
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://hvrossi.github.io/HRportif/react-to-do-list/",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "preview": "vite preview"
   },
   "dependencies": {
     "react": "^18.2.0",
@@ -19,13 +16,7 @@
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
     "@vitejs/plugin-react": "^2.0.1",
-    "gh-pages": "^4.0.0",
     "typescript": "^4.6.4",
     "vite": "^3.0.7"
-  },
-  "main": "index.js",
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": ""
+  }
 }
